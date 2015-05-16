@@ -40,7 +40,7 @@ bs_frameworks = (frameworks + ['RubyMotion']).map { |framework|
 #########################
 
 env = %Q{ /usr/bin/env VM_PLATFORM="MacOSX" VM_KERNEL_PATH="#{rubymotion_dir}/data/osx/#{osx_version}/MacOSX/kernel-x86_64.bc" VM_OPT_LEVEL="0" /usr/bin/arch -arch x86_64 }
-system %Q{ #{env} #{rubymotion_dir}/bin/ruby #{bs_frameworks} --emit-llvm "/tmp/#{filename}.x86_64.s" #{mrep} "#{filename}" }
+system %Q{ #{env} #{rubymotion_dir}/bin/ruby #{bs_frameworks} --debug-info-version 1 --emit-llvm "/tmp/#{filename}.x86_64.s" #{mrep} "#{filedir}/#{filename}" }
 
 system %Q{ clang -fexceptions -c -arch x86_64 "/tmp/#{filename}.x86_64.s" -o "/tmp/#{filename}.x86_64.o" }
 
